@@ -1,5 +1,4 @@
 package EquipeSoccer;
-
 import java.util.Date;
 import java.util.List;
 /**
@@ -18,7 +17,7 @@ public class Tournois {
 
     //TODO Faire les constructeurs et methodes pour les actions suivant:
     // Ajout + retrait d'equipe, affichage de l'horraire des matchs
-    // + leur resultat
+    // + leu resultat
 
 
     public String getNomTournois() {
@@ -51,6 +50,12 @@ public class Tournois {
 
     public void setEquipes(List<Equipe> equipes) {
         this.equipes = equipes;
+    }
+
+    public void afficheEquipes(){
+        for(Equipe equipe : equipes){
+            System.out.println(equipe);
+        }
     }
 
 

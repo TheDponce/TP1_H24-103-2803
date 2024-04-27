@@ -1,5 +1,6 @@
 package EquipeSoccer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,14 +13,10 @@ public class Equipe {
 
     String nomEquipe;
     double budget;
-    List<Joueur>joueurs;
+    List<Joueur> joueurs = new ArrayList<>();;
 
 
-
-
-    //TODO Faire les constructeurs et methodes pour les actions suivant: Affichage
-    // de l'equipe, ajout de joueur et retrait de joueur dans l'equipe
-    // + Maximum d'un gardien par equipe alors creation de logique pour cela
+    //TODO Faire les constructeurs et methodes pour les actions suivant: Maximum d'un gardien par equipe alors creation de logique pour cela
 
 
     public String getNomEquipe() {
@@ -47,7 +44,20 @@ public class Equipe {
     }
 
 
+    public void AjouterJoueur(Joueur joueur) {
 
+        joueurs.add(joueur);
+    }
 
+    public void RetraitJoueur(Joueur joueur) {
 
+        joueurs.remove(joueur);
+    }
+
+    @Override
+    public String toString() {
+
+        return  " Nom de l'équipe: " + this.nomEquipe + "Budget : " + this.budget + " Joueurs :  " + this.joueurs ;
+
+    }
 }

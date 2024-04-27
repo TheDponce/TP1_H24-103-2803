@@ -1,5 +1,7 @@
 package EquipeSoccer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -11,14 +13,16 @@ import java.util.Date;
 public class Joueur {
     private String nom;
     private String prenom;
-    private Date anneDeNaissance;
+    private LocalDate anneDeNaissance;
     private double salaire;
 
+    //TODO creer une logique pour la position ou l'affectation du joueur
 
-    public Joueur(String nom, double salaire, Date anneDeNaissance, String prenom) {
+
+    public Joueur(String nom, double salaire, String anneDeNaissance, String prenom) {
         this.nom = nom;
         this.salaire = salaire;
-        this.anneDeNaissance = anneDeNaissance;
+        this.anneDeNaissance = LocalDate.parse(anneDeNaissance, DateTimeFormatter.ISO_LOCAL_DATE);
         this.prenom = prenom;
     }
 
@@ -39,11 +43,11 @@ public class Joueur {
         this.prenom = prenom;
     }
 
-    public Date getAnneDeNaissance() {
+    public LocalDate getAnneDeNaissance() {
         return anneDeNaissance;
     }
 
-    public void setAnneDeNaissance(Date anneDeNaissance) {
+    public void setAnneDeNaissance(LocalDate anneDeNaissance) {
         this.anneDeNaissance = anneDeNaissance;
     }
 
@@ -56,6 +60,15 @@ public class Joueur {
     }
 
 
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", anneDeNaissance=" + anneDeNaissance +
+                ", salaire=" + salaire +
+                '}';
+    }
 
 
 

@@ -11,7 +11,7 @@ import java.util.Date;
 public class Entraineur extends Joueur {
 
     public Entraineur(String nom, double salaire, Date anneDeNaissance, String prenom) {
-        super(nom, salaire, anneDeNaissance, prenom);
+        super(nom, salaire, String.valueOf(anneDeNaissance), prenom);
     }
     int talent;
     int points;

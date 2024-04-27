@@ -15,8 +15,24 @@ public class Match {
     int scoreEquipe1;
     int scoreEquipe2;
 
-    //TODO Faire les constructeurs et methodes pour les actions suivant:
-    // Comparaison des resultats, affichage des gagnants et afficher les informations du match
+    // TODO Creation de logique pour faire le Match ( scoreEquipe = Random)
+
+    public Match(Date dateMatch, Equipe equipe1, Equipe equipe2, int scoreEquipe1, int scoreEquipe2) {
+        this.dateMatch = dateMatch;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+        this.scoreEquipe1 = scoreEquipe1;
+        this.scoreEquipe2 = scoreEquipe2;
+
+
+    }
+
+    public Match()
+    {
+
+    }
+
+    //TODO Faire les constructeurs
 
 
     public Date getDateMatch() {
@@ -59,8 +75,38 @@ public class Match {
         this.scoreEquipe2 = scoreEquipe2;
     }
 
+    public Equipe compareResults(int score1, int score2) // Logique de determination du vainqueur
+    {
+        this.scoreEquipe1 = score1;
+        this.scoreEquipe2 = score2;
+
+        if (score1 > score2)
+        {
+            return equipe1;
+        }
+        else
+        {
+            return equipe2;
+        }
+
+    }
+
+    public String AfficherGagnant() // Logique d'affichage de l'équipe Gagnante
+    {
+        return " Equipe Gagnante:  "  + compareResults(this.scoreEquipe1,this.scoreEquipe2).toString() ;
+    }
 
 
 
 
+    @Override
+    public String toString() {
+        return "Match{" +
+                "dateMatch=" + dateMatch +
+                ", equipe1=" + equipe1 +
+                ", equipe2=" + equipe2 +
+                ", scoreEquipe1=" + scoreEquipe1 +
+                ", scoreEquipe2=" + scoreEquipe2 +
+                '}';
+    }
 }
