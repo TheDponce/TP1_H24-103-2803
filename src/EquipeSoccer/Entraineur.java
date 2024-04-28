@@ -11,7 +11,7 @@ import java.util.Date;
 public class Entraineur extends Joueur {
 
     public Entraineur(String nom, double salaire, Date anneDeNaissance, String prenom) {
-        super(nom, salaire, String.valueOf(anneDeNaissance), prenom);
+        super(nom, String.valueOf(salaire), String.valueOf(anneDeNaissance), prenom);
     }
     int talent;
     int points;
@@ -32,5 +32,18 @@ public class Entraineur extends Joueur {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+
+    @Override
+    public String toString() {
+        return "\n"+"Entraineur{" +
+                "nom='" + getNom() + '\'' +
+                ", prenom='" + getPrenom() + '\'' +
+                ", anneDeNaissance=" + getAnneDeNaissance() +
+                ", salaire=" + getSalaire() +
+                ", Nombre de match =" + talent +
+                ", Nombre de Match remporté=" + points +"\n"
+                ;
     }
 }

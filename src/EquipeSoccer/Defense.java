@@ -11,7 +11,7 @@ import java.util.Date;
 public class Defense extends Joueur {
 
     public Defense(String nom, double salaire, Date anneDeNaissance, String prenom) {
-        super(nom, salaire, String.valueOf(anneDeNaissance), prenom);
+        super(nom, String.valueOf(salaire), String.valueOf(anneDeNaissance), prenom);
     }
 
     int talent;

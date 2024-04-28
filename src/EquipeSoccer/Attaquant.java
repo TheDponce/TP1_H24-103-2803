@@ -11,7 +11,7 @@ import java.util.Date;
 public class Attaquant extends Joueur {
 
     public Attaquant(String nom, String prenom, String anneDeNaissance, double salaire) {
-        super(nom, salaire, anneDeNaissance, prenom);
+        super(nom, String.valueOf(salaire), anneDeNaissance, prenom);
     }
 
     int talent;

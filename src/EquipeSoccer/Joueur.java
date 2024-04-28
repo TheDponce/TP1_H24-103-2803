@@ -19,9 +19,9 @@ public class Joueur {
     //TODO creer une logique pour la position ou l'affectation du joueur
 
 
-    public Joueur(String nom, double salaire, String anneDeNaissance, String prenom) {
+    public Joueur(String nom, String salaire, String anneDeNaissance, String prenom) {
         this.nom = nom;
-        this.salaire = salaire;
+        this.salaire = Double.parseDouble(salaire);
         this.anneDeNaissance = LocalDate.parse(anneDeNaissance, DateTimeFormatter.ISO_LOCAL_DATE);
         this.prenom = prenom;
     }

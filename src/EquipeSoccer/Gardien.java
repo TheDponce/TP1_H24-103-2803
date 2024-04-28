@@ -12,7 +12,7 @@ import java.util.Date;
 public class Gardien extends Joueur {
 
     public Gardien(String nom, String prenom, String anneDeNaissance, double salaire) {
-        super(nom, salaire, anneDeNaissance, prenom);
+        super(nom, String.valueOf(salaire), anneDeNaissance, prenom);
     }
 
     int talent;

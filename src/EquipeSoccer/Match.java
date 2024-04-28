@@ -1,6 +1,7 @@
 package EquipeSoccer;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -9,7 +10,7 @@ import java.util.Date;
  */
 
 public class Match {
-    Date dateMatch;
+    long dateMatch;
     Equipe equipe1;
     Equipe equipe2;
     int scoreEquipe1;
@@ -17,29 +18,29 @@ public class Match {
 
     // TODO Creation de logique pour faire le Match ( scoreEquipe = Random)
 
-    public Match(Date dateMatch, Equipe equipe1, Equipe equipe2, int scoreEquipe1, int scoreEquipe2) {
-        this.dateMatch = dateMatch;
+    public Match(String dateMatch, Equipe equipe1, Equipe equipe2, int scoreEquipe1, int scoreEquipe2) {
+        this.dateMatch = Long.parseLong(dateMatch);
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
         this.scoreEquipe1 = scoreEquipe1;
         this.scoreEquipe2 = scoreEquipe2;
-
-
     }
 
-    public Match()
+    public void jouerMatch() // Jouer un match
     {
-
+        Random rand = new Random();
+        this.scoreEquipe1 = rand.nextInt(13);
+        this.scoreEquipe2 = rand.nextInt(13);
     }
 
     //TODO Faire les constructeurs
 
 
-    public Date getDateMatch() {
+    public long getDateMatch() {
         return dateMatch;
     }
 
-    public void setDateMatch(Date dateMatch) {
+    public void setDateMatch(long dateMatch) {
         this.dateMatch = dateMatch;
     }
 
@@ -75,7 +76,7 @@ public class Match {
         this.scoreEquipe2 = scoreEquipe2;
     }
 
-    public Equipe compareResults(int score1, int score2) // Logique de determination du vainqueur
+    public Equipe compareResults(int score1, int score2) // Logique de determination du vainqueur // As t'on besoin de parametre??
     {
         this.scoreEquipe1 = score1;
         this.scoreEquipe2 = score2;
