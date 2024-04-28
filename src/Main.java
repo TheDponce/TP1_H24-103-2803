@@ -14,13 +14,22 @@ public class Main {
         Gardien gardien = new Gardien("Ponce","Donovan","1991-10-15",250000);
         Equipe equipe = new Equipe();
         Attaquant attaquant1 = new Attaquant("Dorcenna","Wesky","1991-12-30",300000);
+        Entraineur entraineur = new Entraineur("Debay",350000,"1930-01-01","Georges");
 
 
         equipe.setBudget(3000000);
-
+        equipe.AjouterJoueur(entraineur); // si on commence par l'entraineur et que le budget est insuffisant, l'ajout ne se fait pas mais le message n'affiche pas non plus.
         equipe.AjouterJoueur(gardien);
-        equipe.AjouterJoueur(gardien);
-        equipe.AjouterJoueur(gardien);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
+        equipe.AjouterJoueur(attaquant1);
         equipe.AjouterJoueur(attaquant1);
         System.out.println(equipe);
 
@@ -44,8 +53,10 @@ public class Main {
 
 
     //TODO
-    // Méthodes pour afficher, insérer et supprimer une équipe.
-    // Affichage des résultats des tournois.
+    // Méthodes pour afficher, insérer et supprimer une équipe dans un tournois
+    // Affichage des résultats des tournois./
+    // Joueur le match
+    // Decoupage du main en fonction
 
 
 }

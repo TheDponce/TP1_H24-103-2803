@@ -1,7 +1,5 @@
 package EquipeSoccer;
 
-import java.util.Date;
-
 /**
  *
  * @author Dorcenna Wesky,  Donovan Ponce
@@ -10,7 +8,7 @@ import java.util.Date;
 
 public class Entraineur extends Joueur {
 
-    public Entraineur(String nom, double salaire, Date anneDeNaissance, String prenom) {
+    public Entraineur(String nom, double salaire, String anneDeNaissance, String prenom) {
         super(nom, String.valueOf(salaire), String.valueOf(anneDeNaissance), prenom);
     }
     int talent;
