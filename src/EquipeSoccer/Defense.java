@@ -14,17 +14,17 @@ public class Defense extends Joueur {
         super(nom, String.valueOf(salaire), String.valueOf(anneDeNaissance), prenom);
     }
 
-    int talent;
+    int nbMatch;
     int points;
 
 
 
-    public int getTalent() {
-        return talent;
+    public int getNbMatch() {
+        return nbMatch;
     }
 
-    public void setTalent(int talent) {
-        this.talent = talent;
+    public void setNbMatch(int nbMatch) {
+        this.nbMatch = nbMatch;
     }
 
     public int getPoints() {
@@ -33,5 +33,23 @@ public class Defense extends Joueur {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public void AjouterMatch()
+    {
+        nbMatch++;
+    }
+
+    public void AjouterPoint()
+    {
+        points++;
+    }
+
+    @Override
+    public String toString() {
+        return "Defense{" +
+                "talent=" + nbMatch +
+                ", passe =" + points +
+                '}';
     }
 }

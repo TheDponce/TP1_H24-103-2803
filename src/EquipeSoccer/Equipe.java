@@ -19,9 +19,22 @@ public class Equipe {
     int nombreEntraineur = 0;
     String nomEquipe;
     double budget;
+    List<Joueur> joueurs = new ArrayList<>();
+
+    public Equipe(double budget, String nomEquipe) {
+        this.budget = budget;
+        this.nomEquipe = nomEquipe;
+        this.budgetInitial = budget;
+    }
+
+    public Equipe() {
+
+
+    }
+
     double budgetInitial;
 
-    List<Joueur> joueurs = new ArrayList<>();
+
 
     public String getNomEquipe() {
         return nomEquipe;
@@ -98,9 +111,6 @@ public class Equipe {
 
 
     }
-
-
-
 
     public void RetraitJoueur(Joueur joueur) {
 

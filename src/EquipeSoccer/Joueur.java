@@ -31,6 +31,7 @@ public class Joueur {
         return nom;
     }
 
+
     public void setNom(String nom) {
         this.nom = nom;
     }

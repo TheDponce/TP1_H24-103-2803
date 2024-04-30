@@ -1,8 +1,5 @@
 package EquipeSoccer;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 /**
  *
  * @author Wesky Dorcenna ,  Donovan Ponce
@@ -15,17 +12,17 @@ public class Gardien extends Joueur {
         super(nom, String.valueOf(salaire), anneDeNaissance, prenom);
     }
 
-    int talent;
+    int nbMatch;
     int points;
 
 
 
-    public int getTalent() {
-        return talent;
+    public int getNbMatch() {
+        return nbMatch;
     }
 
-    public void setTalent(int talent) {
-        this.talent = talent;
+    public void setNbMatch(int nbMatch) {
+        this.nbMatch = nbMatch;
     }
 
     public int getPoints() {
@@ -36,6 +33,17 @@ public class Gardien extends Joueur {
         this.points = points;
     }
 
+
+    public void AjouterMatch()
+    {
+        nbMatch++;
+    }
+
+    public void AjouterPoint()
+    {
+        points++;
+    }
+
     @Override
     public String toString() {
         return "\n" +"Gardien{" +
@@ -43,7 +51,7 @@ public class Gardien extends Joueur {
                 ", prenom='" + getPrenom() + '\'' +
                 ", anneDeNaissance=" + getAnneDeNaissance() +
                 ", salaire=" + getSalaire() +
-                ", Nombre de Match =" + talent +
+                ", Nombre de Match =" + nbMatch +
                 ", Nombre d'arrêt =" + points + "\n"
                 ;
     }

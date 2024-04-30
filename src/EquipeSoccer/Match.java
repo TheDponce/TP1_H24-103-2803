@@ -1,5 +1,7 @@
 package EquipeSoccer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Random;
 
@@ -10,20 +12,17 @@ import java.util.Random;
  */
 
 public class Match {
-    long dateMatch;
+    LocalDate dateMatch;
     Equipe equipe1;
     Equipe equipe2;
     int scoreEquipe1;
     int scoreEquipe2;
 
-    // TODO Creation de logique pour faire le Match ( scoreEquipe = Random)
 
-    public Match(String dateMatch, Equipe equipe1, Equipe equipe2, int scoreEquipe1, int scoreEquipe2) {
-        this.dateMatch = Long.parseLong(dateMatch);
+    public Match(String dateMatch, Equipe equipe1, Equipe equipe2) {
+        this.dateMatch = LocalDate.parse(dateMatch, DateTimeFormatter.ISO_LOCAL_DATE);
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
-        this.scoreEquipe1 = scoreEquipe1;
-        this.scoreEquipe2 = scoreEquipe2;
     }
 
     public void jouerMatch() // Jouer un match
@@ -31,16 +30,22 @@ public class Match {
         Random rand = new Random();
         this.scoreEquipe1 = rand.nextInt(13);
         this.scoreEquipe2 = rand.nextInt(13);
+
+
+
+
+
+
     }
 
     //TODO Faire les constructeurs
 
 
-    public long getDateMatch() {
+    public LocalDate getDateMatch() {
         return dateMatch;
     }
 
-    public void setDateMatch(long dateMatch) {
+    public void setDateMatch(LocalDate dateMatch) {
         this.dateMatch = dateMatch;
     }
 
@@ -76,37 +81,69 @@ public class Match {
         this.scoreEquipe2 = scoreEquipe2;
     }
 
-    public Equipe compareResults(int score1, int score2) // Logique de determination du vainqueur // As t'on besoin de parametre??
+    public Equipe compareResults()
     {
-        this.scoreEquipe1 = score1;
-        this.scoreEquipe2 = score2;
 
-        if (score1 > score2)
-        {
-            return equipe1;
-        }
-        else
-        {
+        if (this.scoreEquipe1 > this.scoreEquipe2) {
+            return equipe1 ;
+        } else if (this.scoreEquipe1 < this.scoreEquipe2) {
             return equipe2;
+        } else {
+            return null; // Match nul
         }
 
     }
 
-    public String AfficherGagnant() // Logique d'affichage de l'équipe Gagnante
+    public String AfficherGagnant() //TODO Logique d'affichage de l'équipe Gagnante + son pointage
     {
-        return " Equipe Gagnante:  "  + compareResults(this.scoreEquipe1,this.scoreEquipe2).toString() ;
+        Equipe gagnant = compareResults();
+        if (gagnant != null) {
+            return "Équipe Gagnante: " + gagnant.getNomEquipe() ;
+        } else {
+            return "Le match est nul.";
+        }
     }
+
+    public String AfficherScore()
+    {
+        return " " +this.scoreEquipe1 + " : "+ this.scoreEquipe2;
+    }
+
+
+    public void UpdateStats()
+    {
+
+        /*
+        Pour chaque joueur dans l'équipe
+        si le joueur est un instance de Gardien/Defense/Attaquant/Entraineur
+        Augmentation du nombre de points(passe,but bloqué, nb match remporté, nb de but marqué)
+        Augmentation du  nombre de match en fonction du nombre de match joueur par l'équipe
+
+         */
+
+
+
+
+
+    }
+
 
 
 
 
     @Override
     public String toString() {
+        Equipe equipe1 = new Equipe();
+        Equipe equipe2 = new Equipe();
+        equipe1.setNomEquipe(this.equipe1.getNomEquipe());
+        equipe2.setNomEquipe(this.equipe2.getNomEquipe());
+
+
         return "Match{" +
                 "dateMatch=" + dateMatch +
-                ", equipe1=" + equipe1 +
-                ", equipe2=" + equipe2 +
+                ", equipe1=" + equipe1.getNomEquipe() +
                 ", scoreEquipe1=" + scoreEquipe1 +
+                ", equipe2=" + equipe2.getNomEquipe() +
                 ", scoreEquipe2=" + scoreEquipe2 +
                 '}';
     }
