@@ -30,21 +30,33 @@ public class Match {
         this.equipe2 = equipe2;
     }
 
-    public Equipe jouerMatch() {
-        Random random = new Random();
-        int score1 = random.nextInt(5);
-        int score2 = random.nextInt(5);
-
-        System.out.println(equipe1.nomEquipe + ": " + score1 + "-" + score2+ " "+ equipe2.nomEquipe);
-
-        if (score1 > score2){
-            return equipe1;
-        } else if (score2>score1) {
+    public Equipe getPerdante() {
+        if (scoreEquipe1 > scoreEquipe2) {
             return equipe2;
-        }else{
-            return jouerMatch();
+        } else if (scoreEquipe1 < scoreEquipe2) {
+            return equipe1;
+        } else {
+            return null; // Match nul
         }
     }
+
+    public Equipe jouerMatch() {
+        Random random = new Random();
+        while (true) {
+            int score1 = random.nextInt(5);
+            int score2 = random.nextInt(5);
+
+            System.out.println(equipe1.nomEquipe + ": " + score1 + "-" + score2 + " " + equipe2.nomEquipe);
+
+            if (score1 > score2) {
+                return equipe1;
+            } else if (score2 > score1) {
+                return equipe2;
+            }
+            // Si le match est nul, réessayer jusqu'à ce qu'il y ait un gagnant
+        }
+    }
+
 
 
 

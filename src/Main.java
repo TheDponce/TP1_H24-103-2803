@@ -73,28 +73,45 @@ public class Main {
 
 
         //Match du poule A
+
+
         ArrayList<Equipe> pouleA = new ArrayList<>();
         pouleA.add(new Equipe("Réal madrid"));
         pouleA.add(new Equipe("Barcelone"));
         pouleA.add(new Equipe("Juventus"));
         pouleA.add(new Equipe("Milan Ac"));
 
-        tournois.jouerTournoi(pouleA);
+
 
 
         //Match du poule B
+
         ArrayList<Equipe> pouleB = new ArrayList<>();
         pouleB.add(new Equipe("Manchester United"));
         pouleB.add(new Equipe("Manchester City"));
         pouleB.add(new Equipe("PSG"));
         pouleB.add(new Equipe("Bayern"));
-        tournois.jouerTournoi(pouleB);
+        System.out.println();
 
+        // Affichage des matchs du poule A
+        System.out.println("Les matchs du poule A");
+        ArrayList<Equipe> vainqueursPouleA = (ArrayList<Equipe>) tournois.jouerTournoi(pouleA);
 
+        // Affichage des matchs du poule B
+        System.out.println();
+        System.out.println("Les matchs du poule B");
+        ArrayList<Equipe> vainqueursPouleB = (ArrayList<Equipe>) tournois.jouerTournoi(pouleB);
 
+        // Affichage des demi-finales
+        System.out.println();
+        System.out.println("Demi-finales");
+        tournois.jouerDemiFinales(vainqueursPouleA, vainqueursPouleB);
 
-
-
+        // Affichage de la finale
+        System.out.println();
+        System.out.println("Finale");
+        tournois.jouerFinale(vainqueursPouleA.get(0), vainqueursPouleB.get(0));
+    }
 
 
 
@@ -133,4 +150,4 @@ public class Main {
      * Deboggage (break point + bug)
      */
 
-}
+
