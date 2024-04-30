@@ -1,6 +1,9 @@
 import EquipeSoccer.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 /**
  *<h1> TP1 h24-103-2803</h1>
  *
@@ -13,20 +16,6 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-    CreateTeams();
-
-
-
-    }
-
-
-
-    public static void CreateTeams()
-    {
-/**
- *
- * <h2> Creation des equipes </h2>
- */
         Equipe equipe1 = new Equipe(30000000, "Real Madrid");
         Equipe equipe2 = new Equipe(32000000, "Manchester United");
         Equipe equipe3 = new Equipe(34000000, "FC Barcelona");
@@ -191,6 +180,35 @@ public class Main {
         equipe8.AjouterJoueur(defenseur8);
         equipe8.AjouterJoueur(defenseur9);
         equipe8.AjouterJoueur(defenseur10);
+
+
+
+
+
+
+        Match match = new Match("2024-04-28", equipe1, equipe2);
+        match.jouerMatch();
+        System.out.println(match);
+        System.out.println(match.AfficherGagnant());
+        System.out.println(match.AfficherScore());
+
+
+
+
+
+
+    }
+
+
+
+    public static void CreateTeams()
+    {
+/**
+ *
+ * <h2> Creation des equipes </h2>
+ */
+
+
 
 
     }
