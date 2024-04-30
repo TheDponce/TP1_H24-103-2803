@@ -15,6 +15,8 @@ public class Joueur {
     private String prenom;
     private LocalDate anneDeNaissance;
     private double salaire;
+    int nbMatch;
+    int points;
 
     //TODO creer une logique pour la position ou l'affectation du joueur
 
@@ -30,6 +32,7 @@ public class Joueur {
     public String getNom() {
         return nom;
     }
+
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -59,6 +62,16 @@ public class Joueur {
         this.salaire = salaire;
     }
 
+    public void AjouterMatch()
+    {
+        nbMatch++;
+    }
+
+    public void AjouterPoint()
+    {
+        points++;
+    }
+
 
     @Override
     public String toString() {
@@ -71,6 +84,6 @@ public class Joueur {
     }
 
 
-
-
+    public void AjouterPoint(int i) {
+    }
 }

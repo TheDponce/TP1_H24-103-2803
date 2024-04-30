@@ -1,4 +1,6 @@
 package EquipeSoccer;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 /**
@@ -12,12 +14,12 @@ public class Tournois {
     String nomTournois;
     Date debutTournois;
     Date finTournois;
-    List<Equipe> equipes;
+    List<Equipe> equipes = new ArrayList<>();
 
 
     //TODO Faire les constructeurs et methodes pour les actions suivant:
-    // Ajout + retrait d'equipe, affichage de l'horraire des matchs
-    // + leu resultat
+    // affichage de l'horraire des matchs
+    // + leur resultat
 
 
     public String getNomTournois() {
@@ -58,7 +60,29 @@ public class Tournois {
         }
     }
 
+    public void AjouterEquipe(Equipe equipe){
 
+        equipes.add(equipe);
+
+    }
+
+    public void RetirerEquipe(Equipe equipe){
+        equipes.remove(equipe);
+
+    }
+
+//    public void Tournament()   TODO implementation du code tournois fait par Wesky
+//    {
+//        for (int i = 0; i < equipes.size(); i++) {
+//            for (int j = i + 1; j < equipes.size(); j++) {
+//                Match match = new Match(LocalDate.now().toString(), equipes.get(i), equipes.get(j));
+//                match.jouerMatch();
+//                System.out.println(match);
+//                System.out.println(match.AfficherGagnant());
+//            }
+//        }
+//
+//    }
 
 
 

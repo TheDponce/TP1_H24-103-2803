@@ -1,113 +1,140 @@
 package EquipeSoccer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Random;
+
 
 /**
  *
  * @author Dorcenna Wesky,  Donovan Ponce
- *
- */
 
-public class Match {
-    long dateMatch;
-    Equipe equipe1;
-    Equipe equipe2;
-    int scoreEquipe1;
-    int scoreEquipe2;
+*/
 
-    // TODO Creation de logique pour faire le Match ( scoreEquipe = Random)
-
-    public Match(String dateMatch, Equipe equipe1, Equipe equipe2, int scoreEquipe1, int scoreEquipe2) {
-        this.dateMatch = Long.parseLong(dateMatch);
-        this.equipe1 = equipe1;
-        this.equipe2 = equipe2;
-        this.scoreEquipe1 = scoreEquipe1;
-        this.scoreEquipe2 = scoreEquipe2;
-    }
-
-    public void jouerMatch() // Jouer un match
-    {
-        Random rand = new Random();
-        this.scoreEquipe1 = rand.nextInt(13);
-        this.scoreEquipe2 = rand.nextInt(13);
-    }
-
-    //TODO Faire les constructeurs
-
-
-    public long getDateMatch() {
-        return dateMatch;
-    }
-
-    public void setDateMatch(long dateMatch) {
-        this.dateMatch = dateMatch;
-    }
-
-    public Equipe getEquipe1() {
-        return equipe1;
-    }
-
-    public void setEquipe1(Equipe equipe1) {
-        this.equipe1 = equipe1;
-    }
-
-    public Equipe getEquipe2() {
-        return equipe2;
-    }
-
-    public void setEquipe2(Equipe equipe2) {
-        this.equipe2 = equipe2;
-    }
-
-    public int getScoreEquipe1() {
-        return scoreEquipe1;
-    }
-
-    public void setScoreEquipe1(int scoreEquipe1) {
-        this.scoreEquipe1 = scoreEquipe1;
-    }
-
-    public int getScoreEquipe2() {
-        return scoreEquipe2;
-    }
-
-    public void setScoreEquipe2(int scoreEquipe2) {
-        this.scoreEquipe2 = scoreEquipe2;
-    }
-
-    public Equipe compareResults(int score1, int score2) // Logique de determination du vainqueur // As t'on besoin de parametre??
-    {
-        this.scoreEquipe1 = score1;
-        this.scoreEquipe2 = score2;
-
-        if (score1 > score2)
-        {
-            return equipe1;
-        }
-        else
-        {
-            return equipe2;
-        }
-
-    }
-
-    public String AfficherGagnant() // Logique d'affichage de l'équipe Gagnante
-    {
-        return " Equipe Gagnante:  "  + compareResults(this.scoreEquipe1,this.scoreEquipe2).toString() ;
-    }
+        public class Match {
+            LocalDate dateMatch;
+            Equipe equipe1;
+            Equipe equipe2;
+            int scoreEquipe1;
+            int scoreEquipe2;
 
 
 
+            public Match(String dateMatch, Equipe equipe1, Equipe equipe2) {
+                this.dateMatch = LocalDate.parse(dateMatch, DateTimeFormatter.ISO_LOCAL_DATE);
+                this.equipe1 = equipe1;
+                this.equipe2 = equipe2;
+            }
 
-    @Override
-    public String toString() {
-        return "Match{" +
-                "dateMatch=" + dateMatch +
-                ", equipe1=" + equipe1 +
-                ", equipe2=" + equipe2 +
-                ", scoreEquipe1=" + scoreEquipe1 +
-                ", scoreEquipe2=" + scoreEquipe2 +
-                '}';
-    }
-}
+            public void jouerMatch() // Jouer un match
+            {
+                Random rand = new Random();
+                this.scoreEquipe1 = rand.nextInt(13);
+                this.scoreEquipe2 = rand.nextInt(13);
+
+            }
+
+                //TODO Faire les constructeurs
+
+
+                public LocalDate getDateMatch() {
+                return dateMatch;
+            }
+
+                public void setDateMatch(LocalDate dateMatch) {
+                this.dateMatch = dateMatch;
+            }
+
+                public Equipe getEquipe1() {
+                return equipe1;
+            }
+
+                public void setEquipe1(Equipe equipe1) {
+                this.equipe1 = equipe1;
+            }
+
+                public Equipe getEquipe2() {
+                return equipe2;
+            }
+
+                public void setEquipe2(Equipe equipe2) {
+                this.equipe2 = equipe2;
+            }
+
+                public int getScoreEquipe1() {
+                return scoreEquipe1;
+            }
+
+                public void setScoreEquipe1(int scoreEquipe1) {
+                this.scoreEquipe1 = scoreEquipe1;
+            }
+
+                public int getScoreEquipe2() {
+                return scoreEquipe2;
+            }
+
+                public void setScoreEquipe2(int scoreEquipe2) {
+                this.scoreEquipe2 = scoreEquipe2;
+            }
+
+                public Equipe compareResults()
+                {
+
+                    if (this.scoreEquipe1 > this.scoreEquipe2) {
+                        return equipe1 ;
+                    } else if (this.scoreEquipe1 < this.scoreEquipe2) {
+                        return equipe2;
+                    } else {
+                        return null; // Match nul
+                    }
+
+                }
+
+                public String AfficherGagnant() //TODO Logique d'affichage de l'équipe Gagnante + son pointage
+                {
+                    Equipe gagnant = compareResults();
+                    if (gagnant != null) {
+                        return "Équipe Gagnante: " + gagnant.getNomEquipe() ;
+                    } else {
+                        return "Le match est nul.";
+                    }
+                }
+
+                public String AfficherScore()
+                {
+                    return " " +this.scoreEquipe1 + " : "+ this.scoreEquipe2;
+                }
+
+
+
+
+
+
+                @Override
+                public String toString() {
+                Equipe equipe1 = new Equipe();
+                Equipe equipe2 = new Equipe();
+                equipe1.setNomEquipe(this.equipe1.getNomEquipe());
+                equipe2.setNomEquipe(this.equipe2.getNomEquipe());
+
+
+                return "Match{" +
+                        "dateMatch=" + dateMatch +
+                        ", equipe1=" + equipe1.getNomEquipe() +
+                        ", scoreEquipe1=" + scoreEquipe1 +
+                        ", equipe2=" + equipe2.getNomEquipe() +
+                        ", scoreEquipe2=" + scoreEquipe2 +
+                        '}';
+            }
+            }
+
+
+
+
+
+
+
+
+
+

@@ -11,17 +11,29 @@ import java.util.List;
 
 public class Equipe {
    private static final int NOMBRE_GARDIEN_MAX = 2;
-    private static final int NOMBRE_ENTRAINEUR_MAX = 1;
-
-    private static final int NOMBRE_JOUEUR_MAX = 12;
+   private static final int NOMBRE_ENTRAINEUR_MAX = 1;
+   private static final int NOMBRE_JOUEUR_MAX = 12;
 
     int nombreGardien = 0;
     int nombreEntraineur = 0;
     String nomEquipe;
     double budget;
+    List<Joueur> joueurs = new ArrayList<>();
+
+    public Equipe(double budget, String nomEquipe) {
+        this.budget = budget;
+        this.nomEquipe = nomEquipe;
+        this.budgetInitial = budget;
+    }
+
+    public Equipe() {
+
+
+    }
+
     double budgetInitial;
 
-    List<Joueur> joueurs = new ArrayList<>();
+
 
     public String getNomEquipe() {
         return nomEquipe;
@@ -98,9 +110,6 @@ public class Equipe {
 
 
     }
-
-
-
 
     public void RetraitJoueur(Joueur joueur) {
 
