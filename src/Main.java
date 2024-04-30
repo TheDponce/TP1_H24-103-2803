@@ -1,5 +1,6 @@
 import EquipeSoccer.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *<h1> TP1 h24-103-2803</h1>
@@ -69,13 +70,25 @@ public class Main {
         //System.out.println(match.AfficherScore());
 
         Tournois tournois = new Tournois();
-        tournois.AjouterEquipe(equipe);
-        tournois.AjouterEquipe(equipe2);
-        tournois.Tournament();
 
 
+        //Match du poule A
+        ArrayList<Equipe> pouleA = new ArrayList<>();
+        pouleA.add(new Equipe("Réal madrid"));
+        pouleA.add(new Equipe("Barcelone"));
+        pouleA.add(new Equipe("Juventus"));
+        pouleA.add(new Equipe("Milan Ac"));
+
+        tournois.jouerTournoi(pouleA);
 
 
+        //Match du poule B
+        ArrayList<Equipe> pouleB = new ArrayList<>();
+        pouleB.add(new Equipe("Manchester United"));
+        pouleB.add(new Equipe("Manchester City"));
+        pouleB.add(new Equipe("PSG"));
+        pouleB.add(new Equipe("Bayern"));
+        tournois.jouerTournoi(pouleB);
 
 
 

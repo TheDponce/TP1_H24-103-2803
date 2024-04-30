@@ -19,6 +19,7 @@ public class Equipe {
     int nombreEntraineur = 0;
     String nomEquipe;
     double budget;
+
     List<Joueur> joueurs = new ArrayList<>();
 
     public Equipe(double budget, String nomEquipe) {
@@ -34,6 +35,9 @@ public class Equipe {
 
     double budgetInitial;
 
+    public Equipe(String nom) {
+        this.nomEquipe = nom;
+    }
 
 
     public String getNomEquipe() {

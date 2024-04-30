@@ -25,20 +25,30 @@ public class Match {
         this.equipe2 = equipe2;
     }
 
-    public void jouerMatch() // Jouer un match
-    {
-        Random rand = new Random();
-        this.scoreEquipe1 = rand.nextInt(13);
-        this.scoreEquipe2 = rand.nextInt(13);
-
-
-
-
-
-
+    public Match(Equipe equipe1, Equipe equipe2) {
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
     }
 
-    //TODO Faire les constructeurs
+    public Equipe jouerMatch() {
+        Random random = new Random();
+        int score1 = random.nextInt(5);
+        int score2 = random.nextInt(5);
+
+        System.out.println(equipe1.nomEquipe + ": " + score1 + "-" + score2+ " "+ equipe2.nomEquipe);
+
+        if (score1 > score2){
+            return equipe1;
+        } else if (score2>score1) {
+            return equipe2;
+        }else{
+            return jouerMatch();
+        }
+    }
+
+
+
+//TODO Faire les constructeurs
 
 
     public LocalDate getDateMatch() {

@@ -54,36 +54,50 @@ public class Tournois {
         this.equipes = equipes;
     }
 
-    public void afficheEquipes(){
-        for(Equipe equipe : equipes){
+    public void afficheEquipes() {
+        for (Equipe equipe : equipes) {
             System.out.println(equipe);
         }
     }
 
-    public void AjouterEquipe(Equipe equipe){
+    public void AjouterEquipe(Equipe equipe) {
 
         equipes.add(equipe);
 
     }
 
-    public void RetirerEquipe(Equipe equipe){
+    public void RetirerEquipe(Equipe equipe) {
         equipes.remove(equipe);
 
     }
 
-    public void Tournament()
-    {
-        for (int i = 0; i < equipes.size(); i++) {
-            for (int j = i + 1; j < equipes.size(); j++) {
-                Match match = new Match(LocalDate.now().toString(), equipes.get(i), equipes.get(j));
-                match.jouerMatch();
-                System.out.println(match);
-                System.out.println(match.AfficherGagnant());
-            }
+    public Equipe jouerTournoi(ArrayList<Equipe> pool) {
+        ArrayList<Equipe> equipesRestantes = new ArrayList<>(pool);
+        ArrayList<Equipe> equipeEliminee = new ArrayList<>();
+
+        while (equipesRestantes.size() > 1) {
+            equipesRestantes = jouerEtape(equipesRestantes, equipeEliminee);
         }
 
+        return equipesRestantes.get(0);
     }
 
+    private ArrayList<Equipe> jouerEtape(ArrayList<Equipe> equipes, ArrayList<Equipe> equipeEliminee) {
+        ArrayList<Equipe> equipeGagnante = new ArrayList<>();
 
+        for (int i = 0; i < equipes.size(); i += 2) {
+            Equipe equipe1 = equipes.get(i);
+            Equipe equipe2 = equipes.get(i + 1);
+            Match match = new Match(equipe1, equipe2);
+            Equipe gagnant = match.jouerMatch();
+            equipeGagnante.add(gagnant);
+            equipeEliminee.add(equipe1);
+            equipeEliminee.add(equipe2);
+        }
 
+        equipeEliminee.removeAll(equipeGagnante);
+
+        return new ArrayList<>(equipeGagnante);
+    }
 }
+
