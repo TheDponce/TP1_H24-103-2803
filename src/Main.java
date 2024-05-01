@@ -19,10 +19,15 @@ public class Main {
 
             fifa2024.Tournament();
 
-        if (Objects.equals(fifa2024.getEquipes().toString(), "[]")) {
+        if (Objects.equals(fifa2024.getEquipes().toString(), "[]" ))
+        {
             fifa2024.Tournament();
 
-        } else
+        } else if(Objects.equals(fifa2024.getEquipes().toString(), "Catched"))
+        {
+            fifa2024.Tournament();
+        }
+        else
             System.out.println(fifa2024.getEquipes());
 
 

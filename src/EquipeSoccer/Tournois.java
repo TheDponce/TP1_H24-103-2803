@@ -79,76 +79,27 @@ public class Tournois {
     {
         Tournament();
     }
-// Do while equipe est plus grand que 1
 
-//        public void Tournament()
-//
-//        {
-//
-//            while (equipes.size() != 1){
-//                equipeGagnantes.clear();
-//                equipePerdantes.clear();
-//                for (int i = 0; i < equipes.size(); i++) {
-//                    for (int j = i + 1; j < equipes.size(); j++) {
-//                        Match match = new Match(LocalDate.now().toString(), equipes.get(i), equipes.get(j));
-//                        match.jouerMatch();
-//                        System.out.println(match);
-//                        System.out.println(match.AfficherGagnant());
-//
-//
-//
-//                        if(match.compareResults() == equipes.get(i) )
-//                        {
-//                            if(!equipePerdantes.contains(equipes.get(i)))
-//                            {
-//                                equipeGagnantes.add(equipes.get(i));
-//
-//
-//                            }
-//
-//                            equipePerdantes.add(equipes.get(j));
-//                            //string pour afficher l'équipe gagnante du tour 1
-//
-//
-//                        }
-//                        else  {
-//                            if(!equipeGagnantes.contains(equipes.get(j)))
-//                            {
-//                                equipeGagnantes.add(equipes.get(j));
-//
-//                            }
-//
-//                            equipePerdantes.add(equipes.get(i));
-//
-//
-//                        }
-//                    }
-//
-//                }
-//
-//
-//                this.equipes = equipeGagnantes;
-//
-//
-//
-//
-//
-////Rozy29
-//            }
-//
-//
-//            System.out.println("L'équipe gagnante du tournoi est : " + equipes.getFirst().getNomEquipe());
-//
-//
-//        }
-//
-//
-//
-//
-////
-////
-////    }
+
+
+
+
 public void Tournament() {
+
+//    // nombre min joueur par equipe du tournois
+//        Equipe equipe1 = new Equipe();
+//
+//
+//        Equipe equipe2 = new Equipe();
+//
+//        if(this.getEquipes().size() != 12)
+//        {
+//            for (int i = 0; i < 12; i++) {
+//
+//                equipe1 = this.getEquipes().get(i);
+//                equipe2 = this.getEquipes().get(i+1);
+//        }
+
 
     try {
         while (equipes.size() > 1 ) {
@@ -158,21 +109,22 @@ public void Tournament() {
             for (int i = 0; i < equipes.size(); i++) {
                 for (int j = i + 1; j < equipes.size(); j++) {
 
-
                     if (equipes.get(i) == null || equipes.get(j) == null) {
                         System.out.println(" ");
                         continue;
                     }
 
-
                     Match match = new Match(LocalDate.now().toString(), equipes.get(i), equipes.get(j));
 
                        match.jouerMatch();
+
                        System.out.println(match);
+
                        System.out.println(match.AfficherGagnant());
 
                        Equipe gagnat = match.compareResults();
                        Equipe perdant = (gagnat == equipes.get(i)) ? equipes.get(j) : equipes.get(i);
+
 
                        if (!equipeGagnantes.contains(gagnat)) {
                            equipeGagnantes.add(gagnat);
@@ -182,24 +134,19 @@ public void Tournament() {
                            equipePerdantes.add(perdant);
                        }
 
-
-
-
-
-
+                    if(equipes.size() < 2 && match.AfficherGagnant() == null)
+                    {
+                        replayTournament();
+                    }
                 }
             }
 
-
-
             equipes = new ArrayList<>(equipeGagnantes);
-
             if (equipes.isEmpty() ||equipePerdantes.isEmpty() ||equipeGagnantes.isEmpty()) {
 
                 replayTournament();
             }
         }
-
 
         try
         {
@@ -208,12 +155,11 @@ public void Tournament() {
             }
         } catch (NullPointerException e)
         {
-            System.out.println("\033[31mAucun vainquer pour le tournois, des holigans on annuler le match :/  Recommencer");
+            System.out.println("Catched");
         }
     } catch (Exception e) {
        replayTournament();
     }
-
 
     try {
         if (equipes.isEmpty()) {
@@ -226,8 +172,8 @@ public void Tournament() {
     }
 
 }
-
-
-
-
 }
+
+
+
+

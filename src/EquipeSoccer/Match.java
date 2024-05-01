@@ -28,6 +28,8 @@ import java.util.Random;
                 this.equipe2 = equipe2;
             }
 
+
+
             public void jouerMatch() // Jouer un match
             {
                 Random rand = new Random();
