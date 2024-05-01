@@ -1,6 +1,7 @@
 package EquipeSoccer;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 /**
@@ -74,13 +75,19 @@ public class Tournois {
     public List<Equipe> jouerTournoi(ArrayList<Equipe> pool) {
         List<Equipe> equipesRestantes = new ArrayList<>(pool);
         List<Equipe> equipesGagnantes = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            Equipe equipe1 = equipesRestantes.get(i * 2);
-            Equipe equipe2 = equipesRestantes.get(i * 2 + 1);
-            Match match = new Match(equipe1, equipe2);
-            Equipe gagnant = match.jouerMatch();
-            equipesGagnantes.add(gagnant);
+
+        while (equipesRestantes.size() > 2) {
+            for (int i = 0; i < equipesRestantes.size() / 2; i++) {
+                Equipe equipe1 = equipesRestantes.get(i * 2);
+                Equipe equipe2 = equipesRestantes.get(i * 2 + 1);
+                Match match = new Match(equipe1, equipe2);
+                Equipe gagnant = match.jouerMatch();
+                equipesGagnantes.add(gagnant);
+            }
+
+            equipesRestantes.removeAll(equipesGagnantes);
         }
+
         return equipesGagnantes;
     }
 
@@ -95,13 +102,9 @@ public class Tournois {
         System.out.println("Finaliste 2 : " + finaliste2.getNomEquipe());
     }
 
-
     public void jouerFinale(Equipe finaliste1, Equipe finaliste2) {
         Match matchFinale = new Match(finaliste1, finaliste2);
         Equipe championne = matchFinale.jouerMatch();
         System.out.println("Equipe championne : " + championne.getNomEquipe());
     }
-
 }
-
-
