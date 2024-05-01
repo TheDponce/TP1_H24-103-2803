@@ -1,6 +1,7 @@
 package EquipeSoccer;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 /**
@@ -54,36 +55,56 @@ public class Tournois {
         this.equipes = equipes;
     }
 
-    public void afficheEquipes(){
-        for(Equipe equipe : equipes){
+    public void afficheEquipes() {
+        for (Equipe equipe : equipes) {
             System.out.println(equipe);
         }
     }
 
-    public void AjouterEquipe(Equipe equipe){
+    public void AjouterEquipe(Equipe equipe) {
 
         equipes.add(equipe);
 
     }
 
-    public void RetirerEquipe(Equipe equipe){
+    public void RetirerEquipe(Equipe equipe) {
         equipes.remove(equipe);
 
     }
 
-    public void Tournament()
-    {
-        for (int i = 0; i < equipes.size(); i++) {
-            for (int j = i + 1; j < equipes.size(); j++) {
-                Match match = new Match(LocalDate.now().toString(), equipes.get(i), equipes.get(j));
-                match.jouerMatch();
-                System.out.println(match);
-                System.out.println(match.AfficherGagnant());
+    public List<Equipe> jouerTournoi(ArrayList<Equipe> pool) {
+        List<Equipe> equipesRestantes = new ArrayList<>(pool);
+        List<Equipe> equipesGagnantes = new ArrayList<>();
+
+        while (equipesRestantes.size() > 2) {
+            for (int i = 0; i < equipesRestantes.size() / 2; i++) {
+                Equipe equipe1 = equipesRestantes.get(i * 2);
+                Equipe equipe2 = equipesRestantes.get(i * 2 + 1);
+                Match match = new Match(equipe1, equipe2);
+                Equipe gagnant = match.jouerMatch();
+                equipesGagnantes.add(gagnant);
             }
+
+            equipesRestantes.removeAll(equipesGagnantes);
         }
 
+        return equipesGagnantes;
     }
 
+    public void jouerDemiFinales(List<Equipe> vainqueursPouleA, List<Equipe> vainqueursPouleB) {
+        Match demiFinale1 = new Match(vainqueursPouleA.get(0), vainqueursPouleB.get(1));
+        Match demiFinale2 = new Match(vainqueursPouleB.get(0), vainqueursPouleA.get(1));
 
+        Equipe finaliste1 = demiFinale1.jouerMatch();
+        Equipe finaliste2 = demiFinale2.jouerMatch();
 
+        System.out.println("Finaliste 1 : " + finaliste1.getNomEquipe());
+        System.out.println("Finaliste 2 : " + finaliste2.getNomEquipe());
+    }
+
+    public void jouerFinale(Equipe finaliste1, Equipe finaliste2) {
+        Match matchFinale = new Match(finaliste1, finaliste2);
+        Equipe championne = matchFinale.jouerMatch();
+        System.out.println("Equipe championne : " + championne.getNomEquipe());
+    }
 }

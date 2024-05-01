@@ -1,25 +1,24 @@
 package EquipeSoccer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Dorcenna Wesky,  Donovan Ponce
- *
- */
-
 public class Equipe {
-   private static final int NOMBRE_GARDIEN_MAX = 2;
+    private static final int NOMBRE_GARDIEN_MAX = 2;
     private static final int NOMBRE_ENTRAINEUR_MAX = 1;
-
     private static final int NOMBRE_JOUEUR_MAX = 12;
 
-    int nombreGardien = 0;
-    int nombreEntraineur = 0;
-    String nomEquipe;
-    double budget;
-    List<Joueur> joueurs = new ArrayList<>();
+    private String nomEquipe;
+    private double budget;
+    private double budgetInitial;
+    private int points;
+    private int butsPour;
+    private int butsContre;
+    private int nombreGardien = 0;
+    private int nombreEntraineur = 0;
+    private List<Joueur> joueurs = new ArrayList<>();
 
     public Equipe(double budget, String nomEquipe) {
         this.budget = budget;
@@ -27,14 +26,12 @@ public class Equipe {
         this.budgetInitial = budget;
     }
 
-    public Equipe() {
-
-
+    public Equipe(String nom) {
+        this.nomEquipe = nom;
+        this.points = 0;
+        this.butsPour = 0;
+        this.butsContre = 0;
     }
-
-    double budgetInitial;
-
-
 
     public String getNomEquipe() {
         return nomEquipe;
@@ -60,70 +57,79 @@ public class Equipe {
         this.budget = budget;
     }
 
+    public double getBudgetInitial() {
+        return budgetInitial;
+    }
 
-    public void AjouterJoueur(Joueur joueur) {
+    public void setBudgetInitial(double budgetInitial) {
+        this.budgetInitial = budgetInitial;
+    }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getButsPour() {
+        return butsPour;
+    }
+
+    public void setButsPour(int butsPour) {
+        this.butsPour = butsPour;
+    }
+
+    public int getButsContre() {
+        return butsContre;
+    }
+
+    public void setButsContre(int butsContre) {
+        this.butsContre = butsContre;
+    }
+
+    public void ajouterPoints(int points) {
+        this.points += points;
+    }
+
+    public void ajouterButsPour(int buts) {
+        this.butsPour += buts;
+    }
+
+    public void ajouterButsContre(int buts) {
+        this.butsContre += buts;
+    }
+
+    public void ajouterJoueur(Joueur joueur) {
         if (joueurs.size() < NOMBRE_JOUEUR_MAX) {
-            boolean added = false; // Un drapeau pour suivre si le joueur a été ajouté
-
+            boolean ajoute = false;
             if (joueur instanceof Entraineur) {
                 if (nombreEntraineur < NOMBRE_ENTRAINEUR_MAX && getBudget() >= joueur.getSalaire()) {
-                    this.nombreEntraineur++;
                     joueurs.add(joueur);
-                    added = true; // Marque le joueur comme ajouté
-                } else if (nombreEntraineur > NOMBRE_ENTRAINEUR_MAX){
-
-                    System.out.println("Nombre maximum d'entraineur atteint");
-
+                    nombreEntraineur++;
+                    budget -= joueur.getSalaire();
+                    ajoute = true;
                 }
-
-            }
-
-            if (joueur instanceof Gardien && !added) { // Vérifie si ce n'est pas déjà un entraîneur
-                if (nombreGardien < NOMBRE_GARDIEN_MAX) {
-                    this.nombreGardien++;
-
-                    if (getBudget() >= joueur.getSalaire()) {
-                        joueurs.add(joueur);
-                        setBudget(getBudget() - joueur.getSalaire());
-                        added = true; // Marque le joueur comme ajouté
-                    } else {
-                        System.out.println("Budget Insuffisant");
-                    }
-                } else {
-                    System.out.println("Nombre maximum de gardiens atteint");
+            } else if (joueur instanceof Gardien) {
+                if (nombreGardien < NOMBRE_GARDIEN_MAX && getBudget() >= joueur.getSalaire()) {
+                    joueurs.add(joueur);
+                    nombreGardien++;
+                    budget -= joueur.getSalaire();
+                    ajoute = true;
                 }
-            }
-
-            if (!added && !(joueur instanceof Entraineur || joueur instanceof Gardien)) { // Ajoute des joueurs réguliers si non gardien/entraineur
+            } else {
                 if (getBudget() >= joueur.getSalaire()) {
                     joueurs.add(joueur);
-                    setBudget(getBudget() - joueur.getSalaire());
-                } else {
-                    System.out.println("Budget Insuffisant"); // condition qui fait que nous n'affichons pas le nombre de joueur si le max est atteint, affiche budget max attein au lieu
+                    budget -= joueur.getSalaire();
+                    ajoute = true;
                 }
             }
-
+            if (!ajoute) {
+                System.out.println("Impossible d'ajouter le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " à l'équipe " + getNomEquipe() + " : budget insuffisant ou limite de joueurs atteinte.");
+            }
         } else {
-            System.out.println("Nombre maximum de joueurs atteint");
+            System.out.println("Impossible d'ajouter le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " à l'équipe " + getNomEquipe() + " : limite de joueurs atteinte.");
         }
-
-
-
-    }
-
-    public void RetraitJoueur(Joueur joueur) {
-
-        joueurs.remove(joueur);
-        setBudget(getBudget() + joueur.getSalaire());
-    }
-
-
-
-    @Override
-    public String toString() {
-
-        return  " Nom de l'équipe: " + this.nomEquipe + "Budget initial : " + this.budgetInitial+"Nombre de jouueur"+ this.joueurs.size()+ "Budget Actuel : " + this.budget+ " Joueurs :  " + this.joueurs ;
-
     }
 }

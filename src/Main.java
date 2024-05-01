@@ -1,5 +1,6 @@
 import EquipeSoccer.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *<h1> TP1 h24-103-2803</h1>
@@ -13,7 +14,7 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        Gardien gardien = new Gardien("Ponce","Donovan","1991-10-15",250000);
+        /*Gardien gardien = new Gardien("Ponce","Donovan","1991-10-15",250000);
         Equipe equipe = new Equipe();
         Equipe equipe2 = new Equipe(25000000,"Real Madrid");
         Attaquant attaquant1 = new Attaquant("Dorcenna","Wesky","1991-12-30",300000);
@@ -47,7 +48,7 @@ public class Main {
         equipe2.AjouterJoueur(attaquant1);
         equipe2.AjouterJoueur(attaquant1);
         equipe2.AjouterJoueur(attaquant1);
-        equipe2.AjouterJoueur(attaquant1);
+        equipe2.AjouterJoueur(attaquant1);     */
 
         //System.out.println();
        // System.out.println(equipe2);
@@ -69,9 +70,52 @@ public class Main {
         //System.out.println(match.AfficherScore());
 
         Tournois tournois = new Tournois();
-        tournois.AjouterEquipe(equipe);
-        tournois.AjouterEquipe(equipe2);
-        tournois.Tournament();
+
+
+               // Création des 8 équipes
+                       Equipe equipe1 = new Equipe("Réal madrid");
+                       Equipe equipe2 = new Equipe("Barcelone");
+                       Equipe equipe3 = new Equipe("Juventus");
+                       Equipe equipe4 = new Equipe("Milan Ac");
+                       Equipe equipe5 = new Equipe("Manchester United");
+                       Equipe equipe6 = new Equipe("Manchester City");
+                       Equipe equipe7 = new Equipe("PSG");
+                       Equipe equipe8 = new Equipe("Bayern");
+                       Equipe equipe9 = new Equipe("AS Roma");
+                       Equipe equipe10 = new Equipe("Atlético Madrid");
+
+                       // Phase de poule
+                       PhasePoule phasePouleA = new PhasePoule("Poule A", equipe1, equipe2, equipe3, equipe4, equipe5);
+                       PhasePoule phasePouleB = new PhasePoule("Poule B", equipe6, equipe7, equipe8, equipe9, equipe10);
+                       phasePouleA.jouerMatchs();
+                       phasePouleB.jouerMatchs();
+
+                       // Demi-finale
+                       Equipe vainqueurPouleA = phasePouleA.getVainqueur();
+                       Equipe vainqueurPouleB = phasePouleB.getVainqueur();
+                       Equipe deuxiemePouleA = phasePouleA.getDeuxieme();
+                       Equipe deuxiemePouleB = phasePouleB.getDeuxieme();
+
+                       MatchDemiFinale demiFinale1 = new MatchDemiFinale(vainqueurPouleA, vainqueurPouleB);
+                       MatchDemiFinale demiFinale2 = new MatchDemiFinale(deuxiemePouleA, deuxiemePouleB);
+                       demiFinale1.jouer();
+                       demiFinale2.jouer();
+
+                       // Finale
+                      Equipe vainqueurFinal = new MatchFinale(demiFinale1.getVainqueur(), demiFinale2.getVainqueur()).jouer();
+                      if (vainqueurFinal == null) {
+                          System.out.println("The final match ended in a tie. No champion declared."); // Affichage des résultats
+                      } else { System.out.println("Résultats de la compétition :");
+
+                       phasePouleA.afficherResultats();
+                          System.out.println();
+                       phasePouleB.afficherResultats();
+                       demiFinale1.afficherResultats();
+                       demiFinale2.afficherResultats();
+                       System.out.println("Équipe championne : " + vainqueurFinal.getNomEquipe());
+                   }
+               }
+}
 
 
 
@@ -90,7 +134,11 @@ public class Main {
 
 
 
-    }
+
+
+
+
+
 
 /**
  *  //DONE Doit Avoir
@@ -120,4 +168,4 @@ public class Main {
      * Deboggage (break point + bug)
      */
 
-}
+
