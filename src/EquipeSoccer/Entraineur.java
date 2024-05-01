@@ -1,5 +1,7 @@
 package EquipeSoccer;
 
+import java.util.Random;
+
 /**
  *
  * @author Dorcenna Wesky,  Donovan Ponce
@@ -8,11 +10,13 @@ package EquipeSoccer;
 
 public class Entraineur extends Joueur {
 
-    public Entraineur(String nom, String prenom, String anneDeNaissance, double salaire ) {
+    public Entraineur(String nom, String prenom, String anneDeNaissance, String salaire ) {
         super(nom, String.valueOf(salaire), String.valueOf(anneDeNaissance), prenom);
     }
-    int talent;
-    int points;
+    Random rand = new Random();
+    int talent = rand.nextInt(25);
+    int points = rand.nextInt(38);
+
 
 
 

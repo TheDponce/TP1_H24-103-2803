@@ -13,6 +13,7 @@ import java.util.Random;
 */
 
         public class Match {
+             Random rand = new Random();
             LocalDate dateMatch;
             Equipe equipe1;
             Equipe equipe2;
@@ -78,16 +79,19 @@ import java.util.Random;
                 this.scoreEquipe2 = scoreEquipe2;
             }
 
+
                 public Equipe compareResults()
                 {
-
-                    if (this.scoreEquipe1 > this.scoreEquipe2) {
-                        return equipe1 ;
-                    } else if (this.scoreEquipe1 < this.scoreEquipe2) {
-                        return equipe2;
-                    } else {
-                        return null; // Match nul
-                    }
+                    do{
+                        if (this.scoreEquipe1 > this.scoreEquipe2) {
+                            return equipe1 ;
+                        } else if (this.scoreEquipe1 < this.scoreEquipe2) {
+                            return equipe2;
+                        } else {
+                            this.scoreEquipe1  = rand.nextInt(3);
+                            this.scoreEquipe2 = rand.nextInt(3);
+                        }return null;
+                    } while (this.scoreEquipe1  !=  this.scoreEquipe2);
 
                 }
 
@@ -113,20 +117,17 @@ import java.util.Random;
 
                 @Override
                 public String toString() {
-                Equipe equipe1 = new Equipe();
-                Equipe equipe2 = new Equipe();
-                equipe1.setNomEquipe(this.equipe1.getNomEquipe());
-                equipe2.setNomEquipe(this.equipe2.getNomEquipe());
+                    String team1Name = (equipe1 != null) ? equipe1.getNomEquipe() : "Match annulé par abandon";
+                    String team2Name = (equipe2 != null) ? equipe2.getNomEquipe() : "Match annulé par abandon";
 
-
-                return "Match{" +
-                        "dateMatch=" + dateMatch +
-                        ", equipe1=" + equipe1.getNomEquipe() +
-                        ", scoreEquipe1=" + scoreEquipe1 +
-                        ", equipe2=" + equipe2.getNomEquipe() +
-                        ", scoreEquipe2=" + scoreEquipe2 +
-                        '}';
-            }
+                    return "Match{" +
+                            "dateMatch=" + dateMatch +
+                            ", equipe1=" + team1Name +
+                            ", scoreEquipe1=" + scoreEquipe1 +
+                            ", equipe2=" + team2Name +
+                            ", scoreEquipe2=" + scoreEquipe2 +
+                            '}';
+                }
             }
 
 

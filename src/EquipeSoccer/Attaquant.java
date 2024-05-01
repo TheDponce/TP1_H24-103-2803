@@ -1,5 +1,7 @@
 package EquipeSoccer;
 
+import java.util.Random;
+
 /**
  *
  * @author Dorcenna Wesky,  Donovan Ponce
@@ -11,8 +13,10 @@ public class Attaquant extends Joueur {
         super(nom, String.valueOf(salaire), anneDeNaissance, prenom);
     }
 
-    int nbMatch;
-    int points;
+    Random rand = new Random();
+    int nbMatch = rand.nextInt(25);
+    int points = rand.nextInt(38);
+
 
 
 

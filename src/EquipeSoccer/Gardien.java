@@ -2,6 +2,7 @@ package EquipeSoccer;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -15,8 +16,9 @@ public class Gardien extends Joueur {
         super(nom, String.valueOf(salaire), anneDeNaissance, prenom);
     }
 
-    int talent;
-    int points;
+    Random rand = new Random();
+    int talent = rand.nextInt(25);
+    int points = rand.nextInt(38);
 
 
 
